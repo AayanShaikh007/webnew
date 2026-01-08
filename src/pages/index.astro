@@ -1,9 +1,10 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import Footer from "../components/footer.astro";
+import MobileHeader from "../components/mobileHeader.astro";
 import { execSync } from 'child_process';
+import MobileDropdown from "../components/mobileDropdown.astro";
 
 const commit = execSync("git rev-parse --short HEAD").toString().trim();
 ---
@@ -12,61 +13,15 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 	<div
 		class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
 	>
-	
-		<!-- mobile header for small screens -->
-		<header
-			class="sm:hidden flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700"
-		>
-			<span class="text-lg font-bold">aayanshaikh.co</span>
-			<button
-				id="menu-toggle"
-				class="p-2 hover:opacity-70"
-				aria-label="Toggle menu"
-			>
-				<svg
-					class="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h16"></path>
-				</svg>
-			</button>
-		</header>
 
-		<!-- mobile dropdown menu (hidden by default) -->
-		<nav
-			id="mobile-menu"
-			class="hidden sm:hidden flex-col bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700"
-		>
-			<a
-				href="/"
-				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
-				>Home</a
-			>
-			<a
-				href="/projects"
-				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
-				>Projects</a
-			>
-			<a
-				href="/contact"
-				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
-				>Contact</a
-			>
-			<a
-				href="/faq"
-				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
-				>FAQ</a
-			>
-		</nav>
+		<MobileHeader />
+
+		<MobileDropdown />
+
+
 
 		<div class="flex flex-1">
-			<!-- desktop sidebar -->
+			<!-- desktop sidebar
 			<aside
 				class="hidden sm:flex w-48 sm:w-56 pl-12 pt-10 flex-col items-start"
 			>
@@ -76,9 +31,9 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 					<a href="/" class="hover:opacity-70">home</a>
 					<a href="/projects" class="hover:opacity-70">projects</a>
 					<a href="/contact" class="hover:opacity-70">contact</a>
-					<a href="/faq" class="hover:opacity-70">idk</a>
+					<a href="/faq" class="hover:opacity-70">resume</a>
 				</nav>
-			</aside>
+			</aside> -->
 
 			<!-- MAIN CONTENT HERE !!-->
 			<main class="flex-1">
@@ -87,7 +42,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 						aayan shaikh.
 					</h1>
 					<p class="text-base sm:text-lg mt-4 opacity-80">
-						Shell commands. Circuit boards. Building the future.
+						Circuit boards. Shell commands. Building the future.
 					</p>
 				</section>
 
@@ -125,7 +80,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 	<Footer commit={commit} />
 	</div>
 
-	<script>
+	<!-- <script>
 		const menuToggle = document.getElementById("menu-toggle");
 		const mobileMenu = document.getElementById("mobile-menu");
 
@@ -133,6 +88,6 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 			mobileMenu?.classList.toggle("hidden");
 			mobileMenu?.classList.toggle("flex");
 		});
-	</script>
+	</script> -->
 
 </Layout>

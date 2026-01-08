@@ -1,0 +1,36 @@
+---
+
+---
+
+<!-- voici is le code for ze dropdown menu on mobile screens -->
+
+<nav
+    id="mobile-menu"
+    class="hidden sm:hidden flex-col bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700"
+>
+
+    <a href="/" class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+        >Home</a
+    >
+    <a
+        href="/projects"
+        class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700">Projects</a
+    >
+    <a
+        href="/contact"
+        class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700">Contact</a
+    >
+    <a href="/faq" class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+        >FAQ</a
+    >
+</nav>
+
+<script>
+		const menuToggle = document.getElementById("menu-toggle");
+		const mobileMenu = document.getElementById("mobile-menu");
+
+		menuToggle?.addEventListener("click", () => {
+			mobileMenu?.classList.toggle("hidden");
+			mobileMenu?.classList.toggle("flex");
+		});
+</script>
