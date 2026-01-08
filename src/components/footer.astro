@@ -1,13 +1,22 @@
 ---
 const {commit} = Astro.props;
+const githuburl = "https://github.com/AayanShaikh007/webnew";
 ---
 
 <footer class="w-full text-center">
     <p>
-        &copy; {new Date().getFullYear()} aayan shaikh. built with Astro. 
 
-        {commit ? `latest commit: ${commit}` : ""}
-        
+        &copy; {new Date().getFullYear()} aayan shaikh. built with Astro. current commit: 
+
+        <a 
+        class="underline hover:opacity-67"
+        href=`${githuburl}/commit/${commit}`
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+        {commit}
+
+        </a>        
     </p>
 
 </footer>
