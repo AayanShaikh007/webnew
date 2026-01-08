@@ -5,6 +5,7 @@ import Footer from "../components/footer.astro";
 import MobileHeader from "../components/mobileHeader.astro";
 import { execSync } from 'child_process';
 import MobileDropdown from "../components/mobileDropdown.astro";
+import DesktopNavbar from "../components/desktopNavbar.astro";
 
 const commit = execSync("git rev-parse --short HEAD").toString().trim();
 ---
@@ -34,6 +35,8 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 					<a href="/faq" class="hover:opacity-70">resume</a>
 				</nav>
 			</aside> -->
+
+			<DesktopNavbar />
 
 			<!-- MAIN CONTENT HERE !!-->
 			<main class="flex-1">

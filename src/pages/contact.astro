@@ -2,12 +2,68 @@
 import Layout from "../layouts/Layout.astro";
 import MobileHeader from "../components/mobileHeader.astro";
 import MobileDropdown from "../components/mobileDropdown.astro";
-
+import DesktopNavbar from "../components/desktopNavbar.astro";
+import Footer from "../components/footer.astro";
 ---
 
 <Layout>
-    <MobileHeader />
-    <MobileDropdown />
-    <h1>Contact Me</h1>
-    <p>If you'd like to get in touch, please reach out via email at </p>
-</Layout>
+    <div
+        class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+    >
+        <MobileHeader />
+        <MobileDropdown />
+
+        <div class="flex flex-1">
+            <DesktopNavbar />
+        
+
+            <main class="flex-1">
+                <section class="w-full text-center mt-16">
+                    <h1 class="text-4xl font-bold">contact.</h1>
+                    <p class="text-base sm:text-lg mt-4 opacity-80">
+                        lets get in touch
+                    </p>
+                </section>
+                
+                <h1 class="text-lg pt-10">
+                    school/work: <a href="mailto:ashaik28@uoguelph.ca" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
+                        ashaik28@uoguelph.ca
+                    </a>
+                </h1>
+                <h1 class="text-lg">
+                    personal: <a href="mailto:aayanshaikh770@gmail.com" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
+                        aayanshaikh770@gmail.com
+                    </a>
+                </h1>
+                <h1 class="text-lg">
+                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
+                        +1 (519)-897-2163
+                    </a>
+                </h1>
+
+
+
+                <h1 class="text-4xl pt-10">socials:</h1>
+
+                <h1 class="text-lg">
+                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
+                        +1 (519)-897-2163
+                    </a>
+                </h1>
+                <h1 class="text-lg">
+                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
+                        +1 (519)-897-2163
+                    </a>
+                </h1>
+
+                
+                <h1 class="pt-10">Contact Me</h1>
+                <p>If you'd like to get in touch, please reach out via email at</p>
+
+            </main>
+        </div>
+            
+        </div>
+        <Footer />
+    </div></Layout
+>
