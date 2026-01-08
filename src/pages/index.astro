@@ -1,67 +1,138 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import Footer from "../components/footer.astro";
+import { execSync } from 'child_process';
 
+const commit = execSync("git rev-parse --short HEAD").toString().trim();
 ---
 
 <Layout>
- <div class="flex min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-  <!-- Desktop Sidebar (hidden on small screens) -->
-  <aside class="hidden sm:flex w-48 sm:w-56 p-4 flex-col items-center">
-    <nav class="flex flex-col gap-3 text-sm font-medium items-center">
-      <a href="/" class="hover:opacity-70">Home</a>
-      <a href="/projects" class="hover:opacity-70">Projects</a>
-      <a href="/contact" class="hover:opacity-70">Contact</a>
-    </nav>
-  </aside>
+	<div
+		class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+	>
+	
+		<!-- mobile header for small screens -->
+		<header
+			class="sm:hidden flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700"
+		>
+			<span class="text-lg font-bold">aayanshaikh.co</span>
+			<button
+				id="menu-toggle"
+				class="p-2 hover:opacity-70"
+				aria-label="Toggle menu"
+			>
+				<svg
+					class="w-6 h-6"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</header>
 
-  <!-- Mobile Header (hamburger menu, shown only on small screens) -->
-  <header class="sm:hidden w-full p-4 flex justify-between items-center bg-white dark:bg-slate-900 border-b border-slate-300 dark:border-slate-700">
-    <h1 class="text-lg font-semibold">Aayan</h1>
-    <button id="menu-btn" class="text-2xl focus:outline-none">☰</button>
+		<!-- mobile dropdown menu (hidden by default) -->
+		<nav
+			id="mobile-menu"
+			class="hidden sm:hidden flex-col bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700"
+		>
+			<a
+				href="/"
+				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+				>Home</a
+			>
+			<a
+				href="/projects"
+				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+				>Projects</a
+			>
+			<a
+				href="/contact"
+				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+				>Contact</a
+			>
+			<a
+				href="/faq"
+				class="px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-700"
+				>FAQ</a
+			>
+		</nav>
 
-    <!-- Hidden mobile menu -->
-    <nav
-      id="mobile-menu"
-      class="hidden absolute top-16 left-0 w-full flex flex-col items-center gap-3 p-4 bg-white dark:bg-slate-900 text-sm"
-    >
-      <a href="/" class="hover:opacity-70">Home</a>
-      <a href="/projects" class="hover:opacity-70">Projects</a>
-      <a href="/contact" class="hover:opacity-70">Contact</a>
-    </nav>
-  </header>
+		<div class="flex flex-1">
+			<!-- desktop sidebar -->
+			<aside
+				class="hidden sm:flex w-48 sm:w-56 pl-12 pt-10 flex-col items-start"
+			>
+				<nav
+					class="flex flex-col gap-3 text-lg font-medium items-start"
+				>
+					<a href="/" class="hover:opacity-70">home</a>
+					<a href="/projects" class="hover:opacity-70">projects</a>
+					<a href="/contact" class="hover:opacity-70">contact</a>
+					<a href="/faq" class="hover:opacity-70">idk</a>
+				</nav>
+			</aside>
 
+			<!-- MAIN CONTENT HERE !!-->
+			<main class="flex-1">
+				<section class="w-full text-center mt-16">
+					<h1 class="text-5xl sm:text-8xl font-bold">
+						aayan shaikh.
+					</h1>
+					<p class="text-base sm:text-lg mt-4 opacity-80">
+						Shell commands. Circuit boards. Building the future.
+					</p>
+				</section>
 
-  <section class="w-full text-center mt-16">
-    <h1 class="text-5xl sm:text-8xl font-bold">aayan shaikh.</h1>
-    <p class="text-base sm:text-lg mt-4 opacity-80">
-    Shell commands. Circuit boards. Bulding the future. 
-    </p>
-  </section>
+				<section
+					class="max-w-2xl mx-auto mt-12 px-6 text-lg leading-relaxed space-y-5"
+				>
+					<p>
+						Hey! I'm Aayan. 👋 I like working on embedded systems,
+						Linux, and building cool hardware or software projects.
+					</p>
 
-  <section class="max-w-2xl mx-auto mt-12 px-6 text-lg leading-relaxed">
-    <p>
-      Hey! I'm Aayan. I like working on embedded systems, Linux, and building cool hardware or software projects.
-	</p>
+					<p>
+						I am an undergraduate student at the University of
+						Guelph, studying Computer Engineering 🖥️⚙️ (Co-op).
+					</p>
 
-	<p class="py-5">
-		I am a undergraduate student at the University of Guelph, studying Computer Engineering (Co-op). 
-	</p>
+					<p>
+						Some cool projects I've engineered include a custom
+						keyboard designed from scratch, my own development board
+						(think Arduino) featuring LoRa communication and battery
+						management, and an at-home hydrogen generation system
+						concept (won 1st place!). If this sounds cool, check
+						these projects out in the Projects section!
+					</p>
 
+					<p>
+						I am actively planning and exploring new startup ideas,
+						looking to build the next impactful project. Also, I
+						love collaborating on projects! If you have an idea,
+						feel free to reach out.
+					</p>
+				</section>
+			</main>
+		</div>
+	<Footer commit={commit} />
+	</div>
 
-	<p> 
-		Some cool projects I've engineered include a custom keyboard designed from scratch, 
-		my own development board (think Arduino) featuring LoRa communication and battery managment, 
-		and an at-home hydrogen generation system concept (won 1st place!). 
-		If this sounds cool, check these projects out in the Projects section!
-	</p>
+	<script>
+		const menuToggle = document.getElementById("menu-toggle");
+		const mobileMenu = document.getElementById("mobile-menu");
 
+		menuToggle?.addEventListener("click", () => {
+			mobileMenu?.classList.toggle("hidden");
+			mobileMenu?.classList.toggle("flex");
+		});
+	</script>
 
-  </section>
-
-  
-  </div>
-
-  
 </Layout>

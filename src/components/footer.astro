@@ -1,0 +1,13 @@
+---
+const {commit} = Astro.props;
+---
+
+<footer class="w-full text-center">
+    <p>
+        &copy; {new Date().getFullYear()} aayan shaikh. built with Astro. 
+
+        {commit ? `latest commit: ${commit}` : ""}
+        
+    </p>
+
+</footer>
