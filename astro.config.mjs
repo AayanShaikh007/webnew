@@ -11,8 +11,6 @@ export default defineConfig({
   site: 'https://aayanshaikh.co',  
   integrations: [react()],
 
-  outDir: './docs', // should use docs folder now
-
   vite: {
     plugins: [tailwindcss()]
   }
