@@ -18,7 +18,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
     <div class="flex flex-1">
       <DesktopNavbar />
 
-      <!-- MAIN CONTENT HERE !!-->
+      <!-- MAIN CONTENT HERE !!-->  
       <main class="flex-1">
         <section class="w-full text-center mt-16">
           <h1 class="text-5xl sm:text-8xl font-bold">projects.</h1>
@@ -29,19 +29,28 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
 
         <section class="max-w-6xl mx-auto mt-12 px-6">
           <div class="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- KB-01 Description -->
-            <div class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <!-- project 1 -->
+            <div 
+              class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              data-title="Project 1"
+              data-description="Short secondary description"
+              data-github="https://github.com/"
+            >
               <img src="/scalar-logo.png" alt="Project 1" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
               <div class="project-info absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
                 <h3 class="text-xl font-bold text-white">Project 1</h3>  
-                <p class="text-sm text-white/90 mt-1">short description.</p>
+                <p class="text-sm text-white/90 mt-1">short initial description.</p>
               </div>
             </div>
 
-
-            <!-- X-70 HOTAS Description -->
-             <div class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <img src="/scalar-logo.png" alt="Project 1" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
+            <!-- X-70 HOTAS -->
+            <div 
+              class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              data-title="X-70 HOTAS"
+              data-description="A throttle and joystick HOTAS system designed from the ground up. Modelled after the X-56 HOTAS. Features custom mechanical switches, analog joystick, and throttle controls with precision calibration."
+              data-github="https://github.com"
+            >
+              <img src="/scalar-logo.png" alt="X-70 HOTAS" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
               <div class="project-info absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
                 <h3 class="text-xl font-bold text-white">X-70 HOTAS</h3>  
                 <p class="text-sm text-white/90 mt-1">A throttle and joystick HOTAS system designed from the ground up. Modelled after the X-56 HOTAS.</p>
@@ -56,7 +65,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
     <Footer />
   </div>
 
-  <!-- popup more info -->
+  <!-- popup -->
   <div id="popup" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
     <div class="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-2xl mx-4 relative">
       <button id="closePopup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl">&times;</button>
@@ -67,18 +76,18 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
 </Layout>
 
 <script>
-  function openPopup(projectTitle: string) {
+  function openPopup(projectData: { title: string; description: string; github: string }) {
     const popup = document.getElementById('popup');
     const popupContent = document.getElementById('popupContent');
     
     if (popup && popupContent) {
       popupContent.innerHTML = `
-        <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">${projectTitle}</h2>
-        <p class="text-lg text-slate-700 dark:text-slate-300 mb-6">Detailed information about ${projectTitle} will go here.</p>
+        <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">${projectData.title}</h2>
+        <p class="text-lg text-slate-700 dark:text-slate-300 mb-6">${projectData.description}</p>
         
         <div class="border-t border-slate-200 dark:border-slate-700 pt-4">
           <a 
-            href="https://github.com/yourusername/yourrepo" 
+            href="${projectData.github}" 
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline transition-all duration-200"
@@ -117,8 +126,12 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
   // Add click handlers to project items
   document.querySelectorAll('.project-item').forEach((item) => {
     item.addEventListener('click', () => {
-      const title = item.querySelector('h3')?.textContent || 'Project';
-      openPopup(title);
+      const projectData = {
+        title: item.getAttribute('data-title') || 'Project',
+        description: item.getAttribute('data-description') || 'No description available.',
+        github: item.getAttribute('data-github') || 'https://github.com'
+      };
+      openPopup(projectData);
     });
   });
 </script>
