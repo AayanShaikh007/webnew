@@ -6,7 +6,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
 import Footer from "../components/footer.astro";
 ---
 
-<Layout>
+<Layout title="Contact - Aayan Shaikh">
     <div
         class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
     >
@@ -15,55 +15,82 @@ import Footer from "../components/footer.astro";
 
         <div class="flex flex-1">
             <DesktopNavbar />
-        
 
             <main class="flex-1">
                 <section class="w-full text-center mt-16">
-                    <h1 class="text-4xl font-bold">contact.</h1>
+                    <h1 class="text-8xl font-bold">contact.</h1>
                     <p class="text-base sm:text-lg mt-4 opacity-80">
                         lets get in touch
                     </p>
                 </section>
-                
-                <h1 class="text-lg pt-10">
-                    school/work: <a href="mailto:ashaik28@uoguelph.ca" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
-                        ashaik28@uoguelph.ca
-                    </a>
-                </h1>
-                <h1 class="text-lg">
-                    personal: <a href="mailto:aayanshaikh770@gmail.com" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
-                        aayanshaikh770@gmail.com
-                    </a>
-                </h1>
-                <h1 class="text-lg">
-                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
-                        +1 (519)-897-2163
-                    </a>
-                </h1>
 
+                <section class="sm:px-1 text-center sm:text-left">
+                    <p class="pt-10 text-gray-400">
+                        Please reach out via the school/work email for
+                        Co-op/professional inquiries.
+                    </p>
+                    <p class="text-gray-400">
+                        All other inquiries can be directed to the personal
+                        email.
+                    </p>
 
+                    <h1 class="text-lg pt-10">
+                        school/work: <a
+                            href="mailto:ashaik28@uoguelph.ca"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        > 
+                            ashaik28@uoguelph.ca
+                        </a>
+                    </h1>
+                    <h1 class="text-lg">
+                        personal: <a
+                            href="mailto:aayanshaikh770@gmail.com"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        >
+                            aayanshaikh770@gmail.com
+                        </a>
+                    </h1>
+                    <h1 class="text-lg">
+                        phone: <a
+                            href="tel:+1-519-897-2163"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        >
+                            +1 (519)-897-2163
+                        </a>
+                    </h1>
 
-                <h1 class="text-4xl pt-10">socials:</h1>
+                    <h1 class="text-4xl pt-10 pb-3">socials:</h1>
 
-                <h1 class="text-lg">
-                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
-                        +1 (519)-897-2163
-                    </a>
-                </h1>
-                <h1 class="text-lg">
-                    phone: <a href="tel:+1-519-897-2163" class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out">
-                        +1 (519)-897-2163
-                    </a>
-                </h1>
+                    <h1 class="text-lg pt-3 pb-3">
+                        <span class="animate-pulse">github:</span>
+                        <a
+                            href="https://github.com/AayanShaikh007/"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        >
+                            AayanShaikh007
+                        </a>
+                    </h1>
 
-                
-                <h1 class="pt-10">Contact Me</h1>
-                <p>If you'd like to get in touch, please reach out via email at</p>
+                    <h1 class="text-lg">
+                        linkedin: <a
+                            href="https://www.linkedin.com/in/aayan-shaikh-902046266/"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        >
+                            Aayan Shaikh
+                        </a>
+                    </h1>
 
+                    <h1 class="text-lg">
+                        twitter: <a
+                            href="https://twitter.com/asaayans"
+                            class="text-blue-500 underline hover:opacity-50 transition-opacity duration-200 ease-in-out"
+                        >
+                            asaayans
+                        </a>
+                    </h1>
+                </section>
             </main>
         </div>
-            
-        </div>
-        <Footer />
-    </div></Layout
->
+    </div>
+    <Footer />
+</Layout>

@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import Footer from "../components/footer.astro";
+import MobileHeader from "../components/mobileHeader.astro";
+import MobileDropdown from "../components/mobileDropdown.astro";
+import DesktopNavbar from "../components/desktopNavbar.astro";
+import { execSync } from 'child_process';
+
+const commit = execSync("git rev-parse --short HEAD").toString().trim();
+---
+<!-- CLEAN UP CODE LATER -->
+<Layout title="Resume - Aayan Shaikh">
+	<div
+		class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+	>
+		<MobileHeader />
+
+		<MobileDropdown />
+
+		<div class="flex flex-1">
+			<DesktopNavbar />
+			
+			<!-- MAIN CONTENT HERE !!-->
+			<main class="flex-1">
+				<section class="w-full text-center mt-16">
+					<h1 class="text-5xl sm:text-8xl font-bold">
+						resume.
+					</h1>
+				</section>
+
+				<section
+					class="max-w-2xl mx-auto mt-12 px-6 text-lg leading-relaxed space-y-8"
+				>
+					<div>
+						<h2 class="text-2xl sm:text-3xl font-bold mb-4">
+							for employers:
+						</h2>
+						<p class="opacity-80">
+							Thanks for checking out my site and your interest in my work! I'd love to chat about potential opportunities. 
+							Feel free to explore my 
+							<a href="https://www.linkedin.com/in/aayan-shaikh-902046266/" class="underline hover:opacity-70 transition">
+								LinkedIn
+							</a> 
+							profile, or reach out directly via 
+							<a href="mailto:ashaik28@uoguelph.ca" class="underline hover:opacity-70 transition">
+								email
+							</a>
+							if you'd like to discuss the role or grab a copy of my resume.
+	
+						</p>
+					</div>
+
+					<div>
+						<h2 class="text-2xl sm:text-3xl font-bold mb-4">
+							for colleagues:
+						</h2>
+						<p class="opacity-80">
+							I'm always open to connecting with fellow engineers and developers.  
+							Feel free to connect with me on 
+							<a href="https://www.linkedin.com/in/aayan-shaikh-902046266/" class="underline hover:opacity-70 transition">
+							LinkedIn
+							</a> or send me a direct message on Discord (scalar007) with any questions you might have. 
+							I’m open to collaborating on innovative projects, startups, or product ideas, in both hardware or software. 
+						</p>
+					</div>
+				</section>
+			</main>
+		</div>
+		<Footer commit={commit} />
+	</div>
+</Layout>
