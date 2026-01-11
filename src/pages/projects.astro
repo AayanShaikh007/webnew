@@ -272,7 +272,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 
   <!-- popup -->
   <div id="popup" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-    <div class="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-2xl mx-4 relative max-h-3/4 overflow-y-auto">
+    <div id="popupPanel" class="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-2xl mx-4 relative max-h-3/4 overflow-y-auto">
       <button id="closePopup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl">&times;</button>
       <div id="popupContent">
       </div>
@@ -284,7 +284,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
     <button id="closeImageViewer" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-70">&times;</button>
     <img id="fullSizeImage" src="" alt="Full size" class="max-w-[95vw] max-h-[95vh] object-contain" />
   </div>
-</Layout>
+</Layout> 
 
 <style is:global>
   /* Always subtle scrollbar for image gallery */
@@ -311,14 +311,43 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
     scrollbar-width: thin;
     scrollbar-color: rgba(148, 163, 184, 0.15) transparent;
   }
+
+  @keyframes cardEnter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-enter {
+    animation: cardEnter 320ms ease-out forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes popupFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes popupScaleIn {
+    from { transform: scale(0.97); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .animate-popup-overlay {
+    animation: popupFadeIn 180ms ease-out;
+  }
+
+  .animate-popup-panel {
+    animation: popupScaleIn 200ms ease-out;
+  }
 </style>
 
 <script>
   function openPopup(projectData: { title: string; description: string; github: string; images: string[] }) {
     const popup = document.getElementById('popup');
     const popupContent = document.getElementById('popupContent');
+    const popupPanel = document.getElementById('popupPanel');
     
-    if (popup && popupContent) {
+    if (popup && popupContent && popupPanel) {
       let imagesHTML = '';
       if (projectData.images && projectData.images.length > 0) {
         imagesHTML = `
@@ -352,7 +381,13 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
         </div>
       `;
       popup.classList.remove('hidden');
-      popup.classList.add('flex');
+      popup.classList.add('flex', 'animate-popup-overlay');
+      popupPanel.classList.add('animate-popup-panel');
+      // clean up animation classes after they run
+      setTimeout(() => {
+        popup.classList.remove('animate-popup-overlay');
+        popupPanel.classList.remove('animate-popup-panel');
+      }, 220);
       
       // Add click handlers to gallery images for full-size view
       setTimeout(() => {
@@ -479,6 +514,26 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
         img.src = imageSrc;
       });
     }, 1000); // Start prefetching 1 second after page load
+  });
+
+  // Staggered card entry animation
+  window.addEventListener('load', () => {
+    const cards = Array.from(document.querySelectorAll('.project-item'));
+    cards.forEach((item, idx) => {
+      const el = item as HTMLElement;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(10px)';
+      el.style.willChange = 'transform, opacity';
+      setTimeout(() => {
+        el.classList.add('card-enter');
+        // Clean up inline styles after animation completes
+        setTimeout(() => {
+          el.style.removeProperty('opacity');
+          el.style.removeProperty('transform');
+          el.style.removeProperty('will-change');
+        }, 360);
+      }, idx * 80);
+    });
   });
 
   // Add click handlers to project items
