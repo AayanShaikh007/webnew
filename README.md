@@ -1,46 +1,42 @@
-# Astro Portfolio Website
+# Webnew (AayanShaikh.co)
 
-```sh
-npm create astro@latest -- --template basics
+Portfolio site built with Astro and Tailwind. Features interactive project popups with galleries, image preloading, full-size viewer, and staggered text/card animations.
+
+## Features
+- Project grid with popups (gallery + full-size viewer, ESC/overlay close).
+- First image used as card cover; images preloaded/prefetched for snappier navigation.
+- Subtle scrollbar styling and popup fade/scale animation.
+- Staggered text fade-in across pages; staggered card entry on projects.
+- Global layout components for desktop/mobile nav and footer with commit link.
+
+## Getting Started
+1) Install dependencies:
+```bash
+npm install
+```
+2) Run dev server:
+```bash
+npm run dev
+```
+3) Build for production:
+```bash
+npm run build
+```
+4) Preview production build:
+```bash
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Notes
+- Code lives under `src/` (pages, components, layouts, styles).
+- Assets are served from `public/` (per-project folders for gallery images).
+- CSS utilities/keyframes for popups and fade-in live in `src/styles/global.css`.
+- Projects page scripts handle popups, viewer, ESC handling, image preload/prefetch, and cover swapping.
+- Homepage preloads project cover images to speed up first visit to Projects.
 
-## 🚀 Project Structure
+## Tech
+- Astro 5, Tailwind CSS 4, React support (where needed).
+- Node 18+ recommended.
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Deployment
+- Run `npm run build` and deploy the `dist/` output to your static host of choice.
