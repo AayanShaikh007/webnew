@@ -217,7 +217,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               data-title="Head Tracking Mouse / Vision"
-              data-images='["/scalar-logo.png", "/scalar-logo.png"]'
+              data-images='["/facetracker/OpenCV-open-source-new-version-released.jpg"]'
               data-description="Hands‑free cursor control using computer vision to track head movements and detect mouth openings via a webcam. Translates facial landmarks into mouse movements and clicks using OpenCV, MediaPipe, PyAutoGUI, and Keyboard.
 
 <br> See the release and README for setup instructions and usage details."
@@ -413,6 +413,51 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
         popup.classList.remove('flex');
       }
     }
+  });
+
+  // Preload cover images (first image of each project) on page load
+  window.addEventListener('load', () => {
+    const coverImages = new Set();
+    document.querySelectorAll('.project-item').forEach((item) => {
+      const imagesStr = item.getAttribute('data-images') || '[]';
+      try {
+        const images = JSON.parse(imagesStr);
+        if (images.length > 0 && typeof images[0] === 'string') {
+          coverImages.add(images[0]);
+        }
+      } catch (e) {
+        // Skip invalid JSON
+      }
+    });
+    
+    // Preload cover images
+    coverImages.forEach((imageSrc) => {
+      const img = new Image();
+      img.src = imageSrc;
+    });
+    
+    // Prefetch all other images in background with delay
+    setTimeout(() => {
+      const allImages = new Set();
+      document.querySelectorAll('.project-item').forEach((item) => {
+        const imagesStr = item.getAttribute('data-images') || '[]';
+        try {
+          const images = JSON.parse(imagesStr);
+          images.forEach((imageSrc) => {
+            if (typeof imageSrc === 'string') {
+              allImages.add(imageSrc);
+            }
+          });
+        } catch (e) {
+          // Skip invalid JSON
+        }
+      });
+      
+      allImages.forEach((imageSrc) => {
+        const img = new Image();
+        img.src = imageSrc;
+      });
+    }, 1000); // Start prefetching 1 second after page load
   });
 
   // Add click handlers to project items
