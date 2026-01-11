@@ -22,6 +22,20 @@ const { title = "AayanShaikh.co" } = Astro.props;
 	</head>
 	<body>
 		<slot />
+
+		<script>
+			window.addEventListener('load', () => {
+				const nodes = Array.from(document.querySelectorAll('.fade-seq'));
+				nodes.forEach((el, idx) => {
+					if (!(el instanceof HTMLElement)) return;
+					const delay = idx * 80;
+					el.style.animationDelay = `${delay}ms`;
+					setTimeout(() => {
+						el.classList.add('is-visible');
+					}, delay);
+				});
+			});
+		</script>
 	</body>
 </html>
 

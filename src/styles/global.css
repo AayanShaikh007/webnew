@@ -5,3 +5,29 @@
     @apply bg-white dark:bg-slate-900;
   }
 }
+
+@layer utilities {
+  @keyframes fadeDownIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-seq {
+    opacity: 0;
+    transform: translateY(-12px);
+    will-change: opacity, transform;
+  }
+
+  .fade-seq.is-visible {
+    animation: fadeDownIn 320ms ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-seq,
+    .fade-seq.is-visible {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
