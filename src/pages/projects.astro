@@ -5,6 +5,9 @@ import Footer from "../components/footer.astro";
 import MobileHeader from "../components/mobileHeader.astro";
 import MobileDropdown from "../components/mobileDropdown.astro";
 import DesktopNavbar from "../components/desktopNavbar.astro";
+import { execSync } from "child_process";
+
+const commit = execSync("git rev-parse --short HEAD").toString().trim();
 ---
 
 <Layout title="Projects - Aayan Shaikh">
@@ -126,7 +129,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               data-title="SUD- Smart Underwriting Dashboard"
-              data-images='["/scalar-logo.png", "/scalar-logo.png"]'
+              data-images='["/SUD/Screenshot 2025-09-14 073614.png", "/SUD/Screenshot 2025-09-14 073650.png", "/SUD/Screenshot 2025-09-14 073700.png", "/SUD/Screenshot 2025-09-16 220134.png", "/SUD/Screenshot 2025-09-18 170258.png", "/SUD/Screenshot 2025-09-18 170312.png"]'
               data-description="A hackathon project (Hack the North 2025) re-imagining the RiskOps landing page for insurance underwriters. The Smart Underwriting Dashboard uses AI to score submissions against a carrier's appetite, surfaces high‑value risks first, and provides adjustable parameters and portfolio analytics.
 
 <br> How it’s used: AI reviews each insurance submission to determine fit within appetite and assesses risk, delivering a 0–100 score to accelerate underwriter workflow. The dashboard includes tuning pages for appetite parameters and an adaptive portfolio view showing performance metrics (policies, payouts, customers, etc.)."
@@ -143,7 +146,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               data-title="H2@Home (Guelph Engineering Competition)"
-              data-images='["/scalar-logo.png", "/scalar-logo.png"]'
+              data-images='["/H2aHome/awdad.jpg", "/H2aHome/IMG_20251116_193630_775.jpg", "/H2aHome/IMG_20251116_193647_242.jpg"]'
               data-description="Automation and monitoring software for a decentralized hydrogen generation system. Guelph Engineering Competition 2025 — Gold (1st Place).
 
 <br> Built a real-time analytics and control dashboard in React + JavaScript with Firebase over WiFi: live data visualization, component state mapping; improved insight speed by ~70%.
@@ -200,7 +203,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               data-title="Mini Waymo Car"
-              data-images='["/scalar-logo.png", "/scalar-logo.png"]'
+              data-images='["/miniwaymo/Screenshot 2026-01-11 011526.png"]'
               data-description="A miniature autonomous‑style vehicle with ultrasonic object avoidance. Powertrain uses dual N20 DC motors driven by an Adafruit DRV8833; chassis composed of breadboards, zip ties, and cardboard. Attempted Pi Zero‑based computer vision; partial success with obstacle response and movement.
 
 <br> See README for build notes, schematic references, and a demo link showing the vehicle responding to obstructions."
@@ -252,7 +255,7 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
       </main>
     </div>
 
-    <Footer />
+    <Footer commit={commit} />
   </div>
 
   <!-- popup -->
@@ -265,8 +268,8 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
   </div>
 
   <!-- full-size image viewer -->
-  <div id="imageViewer" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[60]">
-    <button id="closeImageViewer" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-[70]">&times;</button>
+  <div id="imageViewer" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-60">
+    <button id="closeImageViewer" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-70">&times;</button>
     <img id="fullSizeImage" src="" alt="Full size" class="max-w-[95vw] max-h-[95vh] object-contain" />
   </div>
 </Layout>
@@ -417,13 +420,17 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
 
   // Preload cover images (first image of each project) on page load
   window.addEventListener('load', () => {
-    const coverImages = new Set();
+    const coverImages = new Set<string>();
     document.querySelectorAll('.project-item').forEach((item) => {
       const imagesStr = item.getAttribute('data-images') || '[]';
       try {
-        const images = JSON.parse(imagesStr);
-        if (images.length > 0 && typeof images[0] === 'string') {
-          coverImages.add(images[0]);
+        const images = JSON.parse(imagesStr) as unknown;
+        if (Array.isArray(images)) {
+          // only care about first item if it's a string
+          if (images.length > 0 && typeof images[0] === 'string') {
+            coverImages.add(images[0]);
+          }
+          return;
         }
       } catch (e) {
         // Skip invalid JSON
@@ -431,29 +438,31 @@ import DesktopNavbar from "../components/desktopNavbar.astro";
     });
     
     // Preload cover images
-    coverImages.forEach((imageSrc) => {
+    coverImages.forEach((imageSrc: string) => {
       const img = new Image();
       img.src = imageSrc;
     });
     
     // Prefetch all other images in background with delay
     setTimeout(() => {
-      const allImages = new Set();
+      const allImages = new Set<string>();
       document.querySelectorAll('.project-item').forEach((item) => {
         const imagesStr = item.getAttribute('data-images') || '[]';
         try {
-          const images = JSON.parse(imagesStr);
-          images.forEach((imageSrc) => {
-            if (typeof imageSrc === 'string') {
-              allImages.add(imageSrc);
-            }
-          });
+          const parsed = JSON.parse(imagesStr) as unknown;
+          if (Array.isArray(parsed)) {
+            parsed.forEach((imageSrc) => {
+              if (typeof imageSrc === 'string') {
+                allImages.add(imageSrc);
+              }
+            });
+          }
         } catch (e) {
           // Skip invalid JSON
         }
       });
       
-      allImages.forEach((imageSrc) => {
+      allImages.forEach((imageSrc: string) => {
         const img = new Image();
         img.src = imageSrc;
       });

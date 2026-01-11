@@ -4,6 +4,9 @@ import MobileHeader from "../components/mobileHeader.astro";
 import MobileDropdown from "../components/mobileDropdown.astro";
 import DesktopNavbar from "../components/desktopNavbar.astro";
 import Footer from "../components/footer.astro";
+import { execSync } from "child_process";
+
+const commit = execSync("git rev-parse --short HEAD").toString().trim();
 ---
 
 <Layout title="Contact - Aayan Shaikh">
@@ -92,5 +95,5 @@ import Footer from "../components/footer.astro";
             </main>
         </div>
     </div>
-    <Footer />
+    <Footer commit={commit} />
 </Layout>
