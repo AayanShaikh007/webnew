@@ -4,6 +4,26 @@
   html, body {
     @apply bg-white dark:bg-slate-900;
   }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.16), transparent 32%),
+      radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.14), transparent 36%),
+      radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.12), transparent 30%);
+    filter: blur(60px);
+    transform: translate3d(0,0,0);
+    animation: driftBackdrop 18s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 @layer utilities {
@@ -29,5 +49,15 @@
       opacity: 1 !important;
       transform: none !important;
     }
+
+    body::before {
+      animation: none !important;
+      opacity: 0.5;
+    }
   }
+}
+
+@keyframes driftBackdrop {
+  from { transform: translate3d(-2%, -2%, 0) scale(1.02); }
+  to { transform: translate3d(2%, 2%, 0) scale(1.05); }
 }
