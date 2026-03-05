@@ -1,4 +1,4 @@
-# Webnew (AayanShaikh.co)
+# Personal Portfolio Website 2 (AayanShaikh.co)
 
 Portfolio site built with Astro and Tailwind. Features interactive project popups with galleries, image preloading, full-size viewer, and staggered text/card animations.
 
