@@ -32,6 +32,50 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
 
         <section class="max-w-6xl mx-auto mt-12 px-6">
           <div class="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- H2@Home: Decentralized Hydrogen Generation System -->
+            <div 
+              class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              data-title="H2@Home (Guelph Engineering Competition)"
+              data-images='["/H2aHome/awdad.jpg", "/H2aHome/IMG_20251116_193630_775.jpg", "/H2aHome/IMG_20251116_193647_242.jpg"]'
+              data-description="Automation and monitoring software for a decentralized hydrogen generation system. Guelph Engineering Competition 2025 - Gold (1st Place).
+
+<br> Built a real-time analytics and control dashboard in React + JavaScript with Firebase over WiFi: live data visualization, component state mapping; improved insight speed by ~70%.
+
+<br> Programmed ESP32 in C++ for GPIO/ADC integration with relays, gas sensors, and safety-trigger logic across 5+ hardware components.
+
+<br> Stack: C++, JavaScript, React, Firebase, ESP32, IoT. (Nov. 2025)
+<br> Check the GitHub for more info."
+              data-github="https://github.com/AayanShaikh007/h2atHome"
+            >
+              <img src="/scalar-logo.png" alt="H2@Home" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
+              <div class="project-info absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
+                <h3 class="text-xl font-bold text-white">H2@Home (Guelph Engineering Competition)</h3>  
+                <p class="text-sm text-white/90 mt-1">Realtime IoT dashboard + ESP32 control</p>
+              </div>
+            </div>
+
+            <!-- Alertcore Project -->
+            <div 
+              class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              data-title="Alertcore Security Ecosystem"
+              data-images='["/alertcore/alertcore_cover.png"]'
+              data-description="A multi-device safety and monitoring ecosystem designed to bridge physical hardware sensors with seamless mobile notifications. Alertcore encompasses three distinct, custom-engineered devices working in tandem to monitor environments and deliver real-time metrics.
+              <br><br>
+              Key aspects of the project:
+              - **Ecosystem integration**: Encompasses three separate hardware devices designed and built to monitor local safety conditions.
+              - **Firmware development**: Powered by ESP32/Arduino microcontroller firmware written in C++ handling distance sensing and API synchronization.
+              - **Mobile dashboard**: Central Android app built in Kotlin using modern Jetpack Compose UI, background sync workers, and secure preferences store.
+              <br><br>
+              Check back soon for the complete release, schematics, and project repository."
+              data-github="https://github.com/AayanShaikh007"
+            >
+              <img src="/scalar-logo.png" alt="Alertcore" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
+              <div class="project-info absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
+                <h3 class="text-xl font-bold text-white">Alertcore</h3>  
+                <p class="text-sm text-white/90 mt-1">Integrated safety system encompassing 3 custom hardware devices</p>
+              </div>
+            </div>
+
             <!-- x-70 hotas -->
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
@@ -148,28 +192,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
               </div>
             </div>
 
-            <!-- H2@Home: Decentralized Hydrogen Generation System -->
-            <div 
-              class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              data-title="H2@Home (Guelph Engineering Competition)"
-              data-images='["/H2aHome/awdad.jpg", "/H2aHome/IMG_20251116_193630_775.jpg", "/H2aHome/IMG_20251116_193647_242.jpg"]'
-              data-description="Automation and monitoring software for a decentralized hydrogen generation system. Guelph Engineering Competition 2025 - Gold (1st Place).
 
-<br> Built a real-time analytics and control dashboard in React + JavaScript with Firebase over WiFi: live data visualization, component state mapping; improved insight speed by ~70%.
-
-<br> Programmed ESP32 in C++ for GPIO/ADC integration with relays, gas sensors, and safety-trigger logic across 5+ hardware components.
-
-<br> Stack: C++, JavaScript, React, Firebase, ESP32, IoT. (Nov. 2025)
-<br> Check the GitHub for more info."
-              data-github="https://github.com/AayanShaikh007/h2atHome"
-            >
-              <img src="/scalar-logo.png" alt="H2@Home" class="project-image w-full h-64 object-cover transition-transform duration-300 hover:scale-110" />
-              <div class="project-info absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
-                <h3 class="text-xl font-bold text-white">H2@Home (Guelph Engineering Competition)</h3>  
-                <p class="text-sm text-white/90 mt-1">Realtime IoT dashboard + ESP32 control</p>
-              </div>
-            </div>
-            
             <!-- Splitboard: Wireless Ergodox-style Keyboard -->
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
@@ -248,7 +271,7 @@ const commit = execSync("git rev-parse --short HEAD").toString().trim();
             <div 
               class="project-item relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               data-title="Voronoi Mouse"
-              data-images='["/mouse/Screenshot 2025-07-29 155358.png", "/mouse/Screenshot 2025-07-29 184200.png", "/mouse/Screenshot 2025-07-29 195925.png"]'
+              data-images='["/mouse/Screenshot 2025-07-29 195925.png", "/mouse/Screenshot 2025-07-29 155358.png", "/mouse/Screenshot 2025-07-29 184200.png"]'
               data-description="A custom 3D-modelled mouse with a breathable voronoi design for comfort during long use. The build journal documents iterative design steps from base outline and low-poly form to button mechanism and final ergonomic tweaks.
 <br> Check the GitHub for more info."
               data-github="https://github.com/AayanShaikh007/mouse"
